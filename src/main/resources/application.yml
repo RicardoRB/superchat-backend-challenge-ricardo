@@ -1,0 +1,17 @@
+server:
+  port: ${PORT:8080}
+logging:
+  level:
+    com.superchat: ${LOG_LEVEL:INFO}
+    org.springframework: INFO
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: 'create-drop'
+  datasource:
+    url: ${SPRING_DATABASE_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${SPRING_DATABASE_USERNAME:username}
+    password: ${SPRING_DATABASE_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver

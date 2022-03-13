@@ -5,4 +5,5 @@ import java.util.*
 
 interface ConversationContactService {
     fun getConversations(contactUUID: UUID): Collection<ConversationDto>
+    fun create(contactUUID: UUID): ConversationDto
 }

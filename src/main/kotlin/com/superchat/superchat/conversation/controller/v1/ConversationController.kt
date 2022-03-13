@@ -9,10 +9,10 @@ import java.util.*
 @RequestMapping("/api/v1/conversations")
 class ConversationController(private val conversationService: ConversationService) {
 
-    @PostMapping("/{conversationUUID}/messages")
+    @PostMapping
     fun postConversationMessage(
         @PathVariable conversationUUID: UUID,
-        @RequestBody sendMessageRequest: SendMessageRequest
+        @RequestBody sendMessageRequest: CreateConversationRequest
     ) {
         conversationService.sendMessage(
             SendConversationMessageDto(

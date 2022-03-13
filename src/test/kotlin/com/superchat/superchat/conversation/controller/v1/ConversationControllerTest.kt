@@ -26,7 +26,7 @@ class ConversationControllerTest {
             MockMvcRequestBuilders.post("/api/v1/conversations/dcb854c0-67ac-41cf-a495-c76af4a037fb/messages")
                 .content(
                     objectMapper.writeValueAsBytes(
-                        SendMessageRequest(
+                        CreateConversationRequest(
                             message = "Example message",
                             platform = Platform.WHATSAPP
                         )

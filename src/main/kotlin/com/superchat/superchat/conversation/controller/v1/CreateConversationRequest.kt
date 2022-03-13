@@ -4,7 +4,7 @@ enum class Platform {
     WHATSAPP
 }
 
-data class SendMessageRequest(
+data class CreateConversationRequest(
     val message: String,
     val platform: Platform
 )

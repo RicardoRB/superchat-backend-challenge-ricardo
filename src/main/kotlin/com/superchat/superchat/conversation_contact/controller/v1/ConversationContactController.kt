@@ -4,10 +4,7 @@ import com.superchat.superchat.conversation.controller.v1.ConversationResponse
 import com.superchat.superchat.conversation_contact.ConversationContactServiceImpl
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
@@ -23,5 +20,13 @@ class ConversationContactController(private val conversationContactService: Conv
         return response.map {
             ConversationResponse(uuid = it.uuid)
         }
+    }
+
+    @PostMapping("/contacts/{contactUUID}/conversations")
+    fun postConversationsContact(
+        @PathVariable contactUUID: UUID
+    ): ConversationResponse {
+        val response = conversationContactService.create(contactUUID)
+        return ConversationResponse(uuid = response.uuid)
     }
 }

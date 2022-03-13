@@ -31,7 +31,8 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.1.1")
 	implementation("javax.validation:validation-api:2.0.1.Final")
 	implementation("com.h2database:h2:2.1.210")
-	runtimeOnly("org.postgresql:postgresql:42.3.3")
+    implementation("org.apache.commons:commons-text:1.9")
+    runtimeOnly("org.postgresql:postgresql:42.3.3")
 	testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.4")
 	testImplementation("org.springframework.integration:spring-integration-test:5.5.9")
 }

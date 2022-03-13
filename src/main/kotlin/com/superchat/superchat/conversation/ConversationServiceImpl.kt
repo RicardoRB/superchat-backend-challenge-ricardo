@@ -1,6 +1,7 @@
 package com.superchat.superchat.conversation
 
 import com.superchat.superchat.config.exception.NotFoundException
+import com.superchat.superchat.config.formatter.MessageFormatter
 import com.superchat.superchat.conversation.dto.SendConversationMessageDto
 import com.superchat.superchat.conversation.external.ProviderConversationFactory
 import com.superchat.superchat.conversation.persistance.ConversationEntity
@@ -14,7 +15,8 @@ import java.util.*
 @Service
 class ConversationServiceImpl(
     private val conversationRepository: ConversationRepository,
-    private val providerConversationFactory: ProviderConversationFactory
+    private val providerConversationFactory: ProviderConversationFactory,
+    private val messageFormatter: MessageFormatter
 ) : ConversationService {
 
     private fun findByUuid(conversationUUID: UUID): ConversationEntity {
@@ -26,16 +28,27 @@ class ConversationServiceImpl(
     override fun sendMessage(sendConversationMessageDto: SendConversationMessageDto) {
 
         val conversation = findByUuid(sendConversationMessageDto.conversationUUID)
+        val contactName = conversation.contacts
+            .firstOrNull { it.uuid == sendConversationMessageDto.contactUUID }?.name ?: ""
+
+        val formattedMessage = messageFormatter.formatPlaceHolders(
+            text = sendConversationMessageDto.message,
+            extraFormatter = mapOf(
+                Pair(
+                    "firstName", contactName
+                )
+            )
+        )
 
         val providerFactory = providerConversationFactory.of(conversation.platform)
         providerFactory.sendMessage(
             externalId = conversation.externalId,
-            message = sendConversationMessageDto.message
+            message = formattedMessage
         )
 
         conversation.messages.add(
             MessageEntity(
-                data = sendConversationMessageDto.message
+                data = formattedMessage
             )
         )
 

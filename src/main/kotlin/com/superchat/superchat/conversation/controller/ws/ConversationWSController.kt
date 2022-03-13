@@ -21,10 +21,13 @@ class ConversationWSController(
         @DestinationVariable conversationUUID: UUID,
         @Payload payload: String
     ): String {
+        // FIXME We are not using spring security to inject the contact,
+        // this must be improved with the current user uuid
         conversationService.sendMessage(
             SendConversationMessageDto(
                 conversationUUID = conversationUUID,
-                message = payload
+                message = payload,
+                contactUUID = UUID.randomUUID()
             )
         )
         return payload

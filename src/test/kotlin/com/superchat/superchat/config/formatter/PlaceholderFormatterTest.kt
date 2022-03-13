@@ -13,16 +13,16 @@ import java.math.BigDecimal
 
 
 @ExtendWith(MockitoExtension::class)
-class MessageFormatterTest {
+class PlaceholderFormatterTest {
 
     @Mock
     private lateinit var bitcoinClient: BitcoinClient
 
-    private lateinit var formatter: MessageFormatter
+    private lateinit var formatter: PlaceholderFormatter
 
     @BeforeEach
     fun init() {
-        formatter = MessageFormatter(
+        formatter = PlaceholderFormatter(
             bitcoinClient = bitcoinClient
         )
     }

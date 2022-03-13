@@ -5,7 +5,7 @@ import org.apache.commons.text.StringSubstitutor
 import org.springframework.stereotype.Component
 
 @Component
-class MessageFormatter(
+class PlaceholderFormatter(
     private val bitcoinClient: BitcoinClient
 ) {
 

@@ -12,13 +12,15 @@ class MessageFormatter(
     /**
      * Format placeholders in a text
      *
-     * NOTE: This is just an example, it should be more flexible and verify what placeholders it contains
-     * before calling
+     * @param extraFormatter add extra formatters as firstName
+     *
+     * @return Text formatted
      */
-    fun formatPlaceHolders(text: String): String {
+    fun formatPlaceHolders(text: String, extraFormatter: Map<String, String> = emptyMap()): String {
         val prices = bitcoinClient.getActualPrice()
         val formatterValues = mapOf(Pair("bitcoinPrice", prices["USD"]?.last))
-        val sub = StringSubstitutor(formatterValues, "{{", "}}")
+        val mapTogether = formatterValues + extraFormatter
+        val sub = StringSubstitutor(mapTogether, "{{", "}}")
         return sub.replace(text)
     }
 

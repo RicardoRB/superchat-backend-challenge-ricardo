@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component
 class WhatsappDelegate(override val platform: Platform = Platform.WHATSAPP) : ProviderConversation {
 
     override fun sendMessage(externalId: String, message: String) {
-        TODO("Not yet implemented")
+        // Send message to whatsapp
     }
 }

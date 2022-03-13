@@ -1,9 +1,15 @@
 package com.superchat.superchat.conversation.controller.ws
 
+import com.superchat.superchat.contact.persistance.ContactEntity
+import com.superchat.superchat.conversation.controller.v1.Platform
+import com.superchat.superchat.conversation.persistance.ConversationEntity
+import com.superchat.superchat.conversation.persistance.ConversationRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.BDDMockito
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.messaging.converter.StringMessageConverter
 import org.springframework.messaging.simp.stomp.StompFrameHandler
@@ -27,6 +33,9 @@ class ConversationWSControllerTest {
     @LocalServerPort
     private var port: Int = 0
 
+    @MockBean
+    private lateinit var conversationRepository: ConversationRepository
+
     private lateinit var webSocketStompClient: WebSocketStompClient
 
     @BeforeEach
@@ -40,9 +49,20 @@ class ConversationWSControllerTest {
 
     @Test
     fun `GIVEN a message WHEN sending to a conversation THEN receive the message`() {
+
+        val conversationUUID = UUID.randomUUID()
+        val conversation = ConversationEntity(
+            contacts = mutableListOf(ContactEntity(name = "Name1", email = "email@email.com")),
+            platform = Platform.WHATSAPP,
+            externalId = UUID.randomUUID().toString()
+        )
+        conversation.uuid = conversationUUID
+
+        BDDMockito.`when`(conversationRepository.findByUuid(conversationUUID))
+            .thenReturn(conversation)
+
         val url = String.format("ws://localhost:%d/ws", port)
         val blockingQueue: BlockingQueue<Any> = ArrayBlockingQueue(3)
-        val conversationUUID = UUID.randomUUID()
 
         webSocketStompClient.messageConverter = StringMessageConverter()
 

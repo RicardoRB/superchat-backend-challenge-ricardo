@@ -1,6 +1,7 @@
 package com.superchat.superchat.conversation.controller.ws
 
 import com.superchat.superchat.conversation.ConversationService
+import com.superchat.superchat.conversation.dto.SendConversationMessageDto
 import org.springframework.messaging.handler.annotation.DestinationVariable
 import org.springframework.messaging.handler.annotation.MessageMapping
 import org.springframework.messaging.handler.annotation.Payload
@@ -20,12 +21,12 @@ class ConversationWSController(
         @DestinationVariable conversationUUID: UUID,
         @Payload payload: String
     ): String {
-//        conversationService.sendMessage(
-//            SendConversationMessageDto(
-//                conversationUUID = conversationUUID,
-//                message = payload
-//            )
-//        )
+        conversationService.sendMessage(
+            SendConversationMessageDto(
+                conversationUUID = conversationUUID,
+                message = payload
+            )
+        )
         return payload
     }
 

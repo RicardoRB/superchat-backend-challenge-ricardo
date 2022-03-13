@@ -1,6 +1,6 @@
 package com.superchat.superchat.conversation.persistance
 
-import com.superchat.superchat.config.persistance.BaseEntity
+import com.superchat.superchat.config.persistance.AuditEntity
 import com.superchat.superchat.contact.persistance.ContactEntity
 import com.superchat.superchat.conversation.controller.v1.Platform
 import com.superchat.superchat.message.persistance.MessageEntity
@@ -19,7 +19,7 @@ class ConversationEntity(
     var platform: Platform,
     @Column
     var externalId: String,
-) : BaseEntity(), Serializable {
+) : AuditEntity(), Serializable {
 
     @Id
     @GeneratedValue

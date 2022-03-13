@@ -1,6 +1,6 @@
 package com.superchat.superchat.message.persistance
 
-import com.superchat.superchat.config.persistance.BaseEntity
+import com.superchat.superchat.config.persistance.AuditEntity
 import com.superchat.superchat.conversation.persistance.ConversationEntity
 import java.io.Serializable
 import java.util.*
@@ -17,7 +17,7 @@ class MessageEntity(
     @Column
     @OneToMany
     var conversations: List<ConversationEntity> = emptyList()
-) : BaseEntity(), Serializable {
+) : AuditEntity(), Serializable {
 
     @Id
     @GeneratedValue

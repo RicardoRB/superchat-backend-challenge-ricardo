@@ -1,8 +1,7 @@
 package com.superchat.superchat.conversation.controller.v1
 
 import com.superchat.superchat.conversation.ConversationService
-import com.superchat.superchat.conversation.dto.ConversationDto
-import com.superchat.superchat.message.dto.MessageDto
+import com.superchat.superchat.conversation.dto.SendConversationMessageDto
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -16,18 +15,11 @@ class ConversationController(private val conversationService: ConversationServic
         @RequestBody sendMessageRequest: SendMessageRequest
     ) {
         conversationService.sendMessage(
-            ConversationDto(
+            SendConversationMessageDto(
                 conversationUUID = conversationUUID,
-                message = MessageDto(
-                    data = sendMessageRequest.message
-                )
+                message = sendMessageRequest.message
             )
         )
-    }
-
-    @GetMapping("/{conversationUUID}/messages")
-    fun getConversation() {
-
     }
 
 }

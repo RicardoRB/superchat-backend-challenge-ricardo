@@ -1,7 +1,7 @@
 package com.superchat.superchat.conversation
 
-import com.superchat.superchat.conversation.dto.ConversationDto
+import com.superchat.superchat.conversation.dto.SendConversationMessageDto
 
 interface ConversationService {
-    fun sendMessage(conversationDto: ConversationDto)
+    fun sendMessage(sendConversationMessageDto: SendConversationMessageDto)
 }

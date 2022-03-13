@@ -2,6 +2,7 @@ package com.superchat.superchat.conversation.persistance
 
 import com.superchat.superchat.config.persistance.BaseEntity
 import com.superchat.superchat.contact.persistance.ContactEntity
+import com.superchat.superchat.conversation.controller.v1.Platform
 import com.superchat.superchat.message.persistance.MessageEntity
 import java.io.Serializable
 import java.util.*
@@ -11,9 +12,13 @@ import javax.persistence.*
 @Table(name = "conversations")
 class ConversationEntity(
     @ManyToMany(mappedBy = "conversations")
-    var contacts: List<ContactEntity>,
+    var contacts: MutableList<ContactEntity>,
     @ManyToMany(mappedBy = "conversations")
-    var messages: List<MessageEntity> = emptyList(),
+    var messages: MutableList<MessageEntity> = mutableListOf(),
+    @Column
+    var platform: Platform,
+    @Column
+    var externalId: String,
 ) : BaseEntity(), Serializable {
 
     @Id

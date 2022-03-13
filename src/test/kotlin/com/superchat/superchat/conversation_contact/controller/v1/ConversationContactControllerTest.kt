@@ -1,6 +1,5 @@
-package com.superchat.superchat.conversation.controller.v1
+package com.superchat.superchat.conversation_contact.controller.v1
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -9,29 +8,20 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import java.util.*
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class ConversationControllerTest {
+internal class ConversationContactControllerTest {
 
     @Autowired
     private lateinit var mvc: MockMvc
 
-    @Autowired
-    private lateinit var objectMapper: ObjectMapper
-
     @Test
-    fun `GIVEN message request WHEN conversations_conversationUUID_messages THEN send the message`() {
+    fun `GIVEN nothing WHEN GET api_v1_contacts_contactUUID_conversations THEN status 200`() {
         mvc.perform(
-            MockMvcRequestBuilders.post("/api/v1/conversations/dcb854c0-67ac-41cf-a495-c76af4a037fb/messages")
-                .content(
-                    objectMapper.writeValueAsBytes(
-                        SendMessageRequest(
-                            message = "Example message",
-                            platform = Platform.WHATSAPP
-                        )
-                    )
-                )
+            MockMvcRequestBuilders.get("/api/v1/contacts/${UUID.randomUUID()}/conversations")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         )

@@ -1,36 +1,13 @@
-version: '3.9'
+# Use postgres/example user/password credentials
+version: '3.1'
 
 services:
-  db_superchat:
-    image: postgres:12.7
-    container_name: "db_superchat"
-    env_file: ./conf/db/.env
+  db:
+    image: postgres:11.5
+    restart: always
     ports:
-      - "5432:5432"
-    volumes:
-      - db_superchat_data:/var/lib/postgresql/data
-    networks:
-      - superchat_backend
-    restart: on-failure
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
 
-  api_superchat:
-    container_name: "api_superchat"
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8887:8888"
-    networks:
-      - superchat_backend
-    depends_on:
-      - db_superchat
-      - queue_superchat
-    restart: on-failure
-
-
-volumes:
-  db_superchat_data:
-
-
-networks:
-  superchat_backend:

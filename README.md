@@ -6,6 +6,10 @@
 2. Execute ./gradlew clean build
 3. Execute ./gradlew bootRun to launch the server
 
+## Create docker image
+
+1. Execute "docker build ."
+
 ## Tasks
 
 - Create contacts given their personal information (Name, E-Mail, etc)

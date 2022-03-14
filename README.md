@@ -35,6 +35,17 @@
     - Example {{bitcoinPrice}}
     - It can be configured with extra placeholders or provide then as parameters
 
+## Database
+
+- create table contacts (id bigint not null, created_at timestamp, updated_at timestamp, email varchar(255), name
+  varchar(255), uuid binary(255), primary key (id))
+- create table contacts_conversations (contacts_id bigint not null, conversations_id bigint not null)
+- create table conversations (id bigint not null, created_at timestamp, updated_at timestamp, external_id varchar(255),
+  platform integer, uuid binary(255), primary key (id))
+- create table messages (id bigint not null, created_at timestamp, updated_at timestamp, data varchar(255), uuid binary(
+  255), primary key (id))
+- create table messages_conversations (messages_id bigint not null, conversations_id bigint not null)
+
 ## Notes
 
 - The project is a monolithic created with a CRUD architecture in order to provide a simple project. I would recommend a

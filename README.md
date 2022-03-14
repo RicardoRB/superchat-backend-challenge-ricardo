@@ -37,9 +37,13 @@
 
 ## Notes
 
+- The project is a monolithic created with a CRUD architecture in order to provide a simple project. I would recommend a
+  different architecture (as CQRS/Event Source) for a microservice architecture
 - This project doesn't have any JWT implementation, some codes are assigned to FIXME when the current customer may be
   needed
-- The project is designed to handle different providers in a flexible way but just an example for whatsapp is created
+- The project is designed to handle different providers in a flexible way but just an example for
+  whatsapp [WhatsappDelegate.kt], but it can be created another custom [ProviderConversation.kt] (SMS, email,
+  Telegram,...)
 - There is integration test and unit tests, but it doesn't cover the entire code. You can play around without the need
   to run the project
 - The project's configuration has create-drop database, it means that will create the tables thanks to spring-data

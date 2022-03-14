@@ -1,4 +1,4 @@
-package com.superchat.superchat.config.formatter.external
+package com.superchat.superchat.formatter.delegate
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.math.BigDecimal

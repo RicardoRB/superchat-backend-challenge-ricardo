@@ -1,7 +1,7 @@
 package com.superchat.superchat.conversation
 
 import com.superchat.superchat.config.exception.NotFoundException
-import com.superchat.superchat.config.formatter.PlaceholderFormatter
+import com.superchat.superchat.formatter.PlaceholderFormatter
 import com.superchat.superchat.conversation.dto.ConversationDto
 import com.superchat.superchat.conversation.dto.SendConversationMessageDto
 import com.superchat.superchat.conversation.external.ProviderConversationFactory

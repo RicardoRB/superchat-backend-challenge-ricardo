@@ -1,19 +1,16 @@
-package com.superchat.superchat.config.formatter
+package com.superchat.superchat.formatter
 
-import com.superchat.superchat.config.formatter.external.BitcoinClient
 import org.apache.commons.text.StringSubstitutor
 import org.springframework.stereotype.Component
-import java.math.BigDecimal
 
 /**
  * Placeholder formatter
  *
- * @property bitcoinClient
- * @constructor Create empty Placeholder formatter
+ * @property placeholderHandlerFactory
  */
 @Component
 class PlaceholderFormatter(
-    private val bitcoinClient: BitcoinClient
+    private val placeholderHandlerFactory: PlaceholderHandlerFactory
 ) {
 
     /**
@@ -24,9 +21,16 @@ class PlaceholderFormatter(
      * @return text with placeholders replaced
      */
     fun formatPlaceHolders(text: String, extraFormatter: Map<String, String> = emptyMap()): String {
-        val prices = bitcoinClient.getActualPrice()
-        val usd = prices.firstOrNull { it.symbol == "USD" }?.price24H ?: BigDecimal.ZERO
-        val formatterValues = mapOf(Pair("bitcoinPrice", usd))
+        val formatterValues = hashMapOf<String, String>()
+
+        val placeholders = placeholderHandlerFactory.getPlaceholders()
+        for (placeholder in placeholders) {
+            if (text.contains(placeholder)) {
+                val placeholderValue = placeholderHandlerFactory.of(placeholder).value()
+                formatterValues[placeholder] = placeholderValue
+            }
+        }
+
         val mapTogether = formatterValues + extraFormatter
         val sub = StringSubstitutor(mapTogether, "{{", "}}")
         return sub.replace(text)

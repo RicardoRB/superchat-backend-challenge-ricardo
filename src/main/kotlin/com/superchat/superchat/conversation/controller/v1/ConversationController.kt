@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
-@RequestMapping("/api/v1/contacts")
+@RequestMapping("/api/v1/conversations")
 class ConversationController(private val conversationService: ConversationService) {
 
     @GetMapping

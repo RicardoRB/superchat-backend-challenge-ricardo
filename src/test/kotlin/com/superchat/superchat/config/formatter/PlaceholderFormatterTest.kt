@@ -1,7 +1,7 @@
 package com.superchat.superchat.config.formatter
 
 import com.superchat.superchat.config.formatter.external.BitcoinClient
-import com.superchat.superchat.config.formatter.external.CurrencyBitcoin
+import com.superchat.superchat.config.formatter.external.CurrencyBitcoinResponse
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -34,14 +34,12 @@ class PlaceholderFormatterTest {
 
         BDDMockito.`when`(bitcoinClient.getActualPrice())
             .thenReturn(
-                hashMapOf(
-                    Pair(
-                        "USD", CurrencyBitcoin(
-                            last = BigDecimal("39091.81"),
-                            buy = BigDecimal("39091.81"),
-                            sell = BigDecimal("39091.81"),
-                            symbol = "USD"
-                        )
+                listOf(
+                    CurrencyBitcoinResponse(
+                        lastTradePrice = BigDecimal("39091.81"),
+                        price24H = BigDecimal("39091.81"),
+                        volume24H = BigDecimal("39091.81"),
+                        symbol = "USD"
                     )
                 )
             )

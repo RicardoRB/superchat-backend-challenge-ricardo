@@ -1,6 +1,5 @@
 package com.superchat.superchat.conversation
 
-import com.superchat.superchat.conversation.controller.v1.ConversationResponse
 import com.superchat.superchat.conversation.dto.ConversationDto
 import com.superchat.superchat.conversation.dto.SendConversationMessageDto
 import java.util.*

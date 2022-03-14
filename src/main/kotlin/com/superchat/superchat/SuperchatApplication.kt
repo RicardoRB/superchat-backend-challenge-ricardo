@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class SuperchatApplication
 
 fun main(args: Array<String>) {
-	runApplication<SuperchatApplication>(*args)
+    runApplication<SuperchatApplication>(*args)
 }

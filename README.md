@@ -35,7 +35,7 @@
     - Example {{bitcoinPrice}}
     - It can be configured with extra placeholders or provide then as parameters
 
-## Database
+## Database (automatically created)
 
 - create table contacts (id bigint not null, created_at timestamp, updated_at timestamp, email varchar(255), name
   varchar(255), uuid binary(255), primary key (id))

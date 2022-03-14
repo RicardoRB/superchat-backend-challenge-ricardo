@@ -6,7 +6,7 @@ import java.math.BigDecimal
 
 @Component
 class BitcoinPlaceholderDelegate(
-    override val placeholder: String = "{{bitcoinPrice}}",
+    override val placeholder: String = "bitcoinPrice",
     private val bitcoinClient: BitcoinClient
 ) : PlaceholderHandler {
 

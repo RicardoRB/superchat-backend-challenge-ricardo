@@ -46,6 +46,13 @@
   255), primary key (id))
 - create table messages_conversations (messages_id bigint not null, conversations_id bigint not null)
 
+## Test
+
+There is integration test and unit test
+
+1. Execute ./gradlew test
+
+
 ## Notes
 
 - The project is a monolithic created with a CRUD architecture in order to provide a simple project. I would recommend a

@@ -5,17 +5,23 @@ import org.apache.commons.text.StringSubstitutor
 import org.springframework.stereotype.Component
 import java.math.BigDecimal
 
+/**
+ * Placeholder formatter
+ *
+ * @property bitcoinClient
+ * @constructor Create empty Placeholder formatter
+ */
 @Component
 class PlaceholderFormatter(
     private val bitcoinClient: BitcoinClient
 ) {
 
     /**
-     * Format placeholders in a text
+     * Format place holders
      *
-     * @param extraFormatter add extra formatters as firstName
-     *
-     * @return Text formatted
+     * @param text text with placeholders
+     * @param extraFormatter include optionals placeholders
+     * @return text with placeholders replaced
      */
     fun formatPlaceHolders(text: String, extraFormatter: Map<String, String> = emptyMap()): String {
         val prices = bitcoinClient.getActualPrice()

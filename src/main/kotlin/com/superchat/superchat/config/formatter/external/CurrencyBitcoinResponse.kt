@@ -3,6 +3,14 @@ package com.superchat.superchat.config.formatter.external
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.math.BigDecimal
 
+/**
+ * Currency bitcoin response
+ *
+ * @property symbol
+ * @property price24H
+ * @property volume24H
+ * @property lastTradePrice
+ */
 data class CurrencyBitcoinResponse(
     val symbol: String,
     @JsonProperty("price_24h")

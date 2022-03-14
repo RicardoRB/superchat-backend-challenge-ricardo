@@ -4,6 +4,13 @@ import java.util.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 
+/**
+ * Create contact response
+ *
+ * @property uuid
+ * @property name
+ * @property email
+ */
 data class CreateContactResponse(
     val uuid: UUID,
     @field:NotBlank

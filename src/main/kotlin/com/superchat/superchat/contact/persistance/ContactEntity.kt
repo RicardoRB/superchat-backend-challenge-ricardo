@@ -8,6 +8,13 @@ import javax.persistence.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 
+/**
+ * Contact entity
+ *
+ * @property name
+ * @property email
+ * @property conversations
+ */
 @Entity
 @Table(name = "contacts")
 class ContactEntity(

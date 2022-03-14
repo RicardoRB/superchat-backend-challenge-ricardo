@@ -8,6 +8,10 @@ import com.superchat.superchat.contact.dto.CreateContactDto
 import com.superchat.superchat.contact.persistance.ContactEntity
 import org.springframework.data.domain.Page
 
+/**
+ * Contact mapper
+ *
+ */
 class ContactMapper {
     companion object {
         fun createContactRequestToCreateContactDto(createContactRequest: CreateContactRequest) =

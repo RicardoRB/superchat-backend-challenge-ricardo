@@ -11,6 +11,13 @@ import org.springframework.web.socket.client.standard.StandardWebSocketClient
 import org.springframework.web.socket.handler.TextWebSocketHandler
 
 
+/**
+ * Custom component whatsapp websocket
+ *
+ * In order to listen whatsapp websocket this component will be created and subscribed to certain topic
+ *
+ * Recommended observer design pattern or pub/sub design patter after when triggered a new message
+ */
 @Component
 class WhatsappWebsocket {
 
